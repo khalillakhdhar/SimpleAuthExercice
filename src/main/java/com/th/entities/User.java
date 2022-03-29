@@ -14,6 +14,7 @@ public class User {
 private String login;
 private String password;
 private String nomComplet;
+private int active;
 @ManyToMany(fetch = FetchType.EAGER)
 private Collection<Role> roles=new ArrayList<Role>();
 public String getLogin() {
@@ -50,6 +51,12 @@ public User(String login, String password, String nomComplet, Collection<Role> r
 public User() {
 	super();
 	// TODO Auto-generated constructor stub
+}
+public int getActive() {
+	return active;
+}
+public void setActive(int active) {
+	this.active = active;
 }
 
 

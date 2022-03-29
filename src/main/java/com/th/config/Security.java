@@ -17,14 +17,24 @@ public class Security extends WebSecurityConfigurerAdapter {
 @Autowired
 private DataSource dataSource; // parametre de récupération permanente des résultat de la BD
 // format de données object
-//@Autowired
-//private BCryptPasswordEncoder bCryptPasswordEncoder;
+@Autowired
+private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 @Autowired
 public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception
 {
-	auth.inMemoryAuthentication().withUser("myadmin").password("{noop}admin").roles("Admininstrateur");
-	auth.inMemoryAuthentication().withUser("myuser").password("{noop}user").roles("utilisateur");
+//	auth.inMemoryAuthentication().withUser("myadmin").password("{noop}admin").roles("Admininstrateur");
+	
+//	auth.inMemoryAuthentication().withUser("myuser").password("{noop}user").roles("utilisateur");
+	
+	auth.jdbcAuthentication().dataSource(dataSource)
+	.usersByUsernameQuery(
+			"select login as principal ,password, active as credentials from user where login=?")
+	.authoritiesByUsernameQuery(
+			"select user_login as principal , roles_role_name as role from user_roles "
+					+ "where user_login=?")
+	.passwordEncoder(bCryptPasswordEncoder).rolePrefix("ROLE_");
+	
 	}
 
 @Override
