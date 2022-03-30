@@ -28,12 +28,13 @@ public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception
 //	auth.inMemoryAuthentication().withUser("myuser").password("{noop}user").roles("utilisateur");
 	
 	auth.jdbcAuthentication().dataSource(dataSource)
-	.usersByUsernameQuery(
-			"select login as principal ,password, active as credentials from user where login=?")
-	.authoritiesByUsernameQuery(
-			"select user_login as principal , roles_role_name as role from user_roles "
-					+ "where user_login=?")
-	.passwordEncoder(bCryptPasswordEncoder).rolePrefix("ROLE_");
+	.usersByUsernameQuery( // on verifie l'existance de l'élément unique username (email cin, login)
+			"select login as principal ,password, active as credentials from admin where login=?")
+	.authoritiesByUsernameQuery( // on utilise le même paramétre pour récupérer les roles
+			"select admin_login as principal , roles_role_name as role from admin_roles "
+					+ "where admin_login=?")
+	.passwordEncoder(bCryptPasswordEncoder).rolePrefix("ROLE_"); // encoder le password
+	// chercher le mdp => associer le mot ROLE_ comme prefix pour les roles récupérer
 	
 	}
 
@@ -43,9 +44,11 @@ protected void configure(HttpSecurity http) throws Exception
 http.formLogin();
 http.csrf().disable();
 http.authorizeRequests().antMatchers("/login/**").permitAll();
-http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/produit").hasRole("Admininstrateur");
-http.authorizeRequests().antMatchers(HttpMethod.POST, "/produit").hasRole("Admininstrateur");
-//http.authorizeRequests().anyRequest().authenticated();
+http.authorizeRequests().antMatchers("/api/**").hasRole("administrateur");
+//autorisé pour tout le monde
+//http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/produit").hasRole("Admininstrateur");
+//http.authorizeRequests().antMatchers(HttpMethod.POST, "/produit").hasRole("Admininstrateur");
+http.authorizeRequests().anyRequest().authenticated(); // le reste des requêtes est accessible uniquement si user=> authentificated
 }
 
 	

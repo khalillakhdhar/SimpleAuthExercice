@@ -29,10 +29,10 @@ public class SimpleAuthExerciceApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		Produit p1=new Produit("PC","toshiba satelite","pc laptop toshiba satellite core i7 pro gamer");
 		produitRepository.save(p1);
-		accountServiceImplement.saveUser(new User("admin", "monadmin", "administrateur", null));
+		accountServiceImplement.saveUser(new User("admin", "monadmin",1, null));
 		accountServiceImplement.saveRole(new Role("administrateur"));
 		accountServiceImplement.addRoleToUser("admin", "administrateur");
-		accountServiceImplement.saveUser(new User("user", "monuser", "usernom", null));
+		accountServiceImplement.saveUser(new User("user", "monuser",1, null));
 		accountServiceImplement.saveRole(new Role("utilisateur"));
 		accountServiceImplement.addRoleToUser("user", "utilisateur");
 		

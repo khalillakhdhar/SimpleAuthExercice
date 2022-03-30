@@ -17,7 +17,7 @@ import com.th.entities.Produit;
 import com.th.repositories.ProduitRepository;
 
 @RestController
-@RequestMapping("produit")
+@RequestMapping("api/produit")
 public class ProduitController {
 	@Autowired
 	ProduitRepository produitRepository;
