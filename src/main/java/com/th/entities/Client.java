@@ -30,6 +30,19 @@ private String nom;
 private String prenom;
 @NotNull
 private String tel;
+@NotNull
+private String grade;
+
+
+
+
+
+public String getGrade() {
+	return grade;
+}
+public void setGrade(String grade) {
+	this.grade = grade;
+}
 public long getId() {
 	return id;
 }
