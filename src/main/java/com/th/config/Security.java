@@ -44,7 +44,7 @@ protected void configure(HttpSecurity http) throws Exception
 http.formLogin();
 http.csrf().disable();
 http.authorizeRequests().antMatchers("/login/**").permitAll();
-http.authorizeRequests().antMatchers("/client/**").permitAll();
+//http.authorizeRequests().antMatchers("/client/**").permitAll();
 
 http.authorizeRequests().antMatchers("/api/**").hasRole("administrateur");
 //autorisé pour tout le monde
