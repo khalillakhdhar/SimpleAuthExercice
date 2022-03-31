@@ -47,8 +47,9 @@ http.authorizeRequests().antMatchers("/login/**").permitAll();
 //http.authorizeRequests().antMatchers("/client/**").permitAll();
 
 http.authorizeRequests().antMatchers("/api/**").hasRole("administrateur");
+
 //autorisé pour tout le monde
-//http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/produit").hasRole("Admininstrateur");
+http.authorizeRequests().antMatchers(HttpMethod.GET, "/client").hasRole("administrateur");
 //http.authorizeRequests().antMatchers(HttpMethod.POST, "/produit").hasRole("Admininstrateur");
 http.authorizeRequests().anyRequest().authenticated(); // le reste des requêtes est accessible uniquement si user=> authentificated
 }

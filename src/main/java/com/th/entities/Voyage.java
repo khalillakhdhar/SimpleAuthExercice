@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -13,16 +14,16 @@ public class Voyage {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
-@NotNull
+@NotEmpty
 private String date;
-@NotNull
+@NotEmpty
 private String destination;
-@NotNull
+@NotEmpty
 private String superviseur;
 @NotNull
 @Min(value = 100)
 private double prix;
-@NotNull
+@NotEmpty
 @Lob
 private String description;
 public long getId() {

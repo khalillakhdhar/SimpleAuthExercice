@@ -14,23 +14,23 @@ public class Client {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private long id;
-@NotNull
+@NotNull(message = "Adresse obligatoire")
 private String adresse;
 @Min(value = 16)
 @NotNull
 private int age;
-@Email
-@NotNull
+@Email(message = "veuillez donner un email valide!")
+@NotNull(message = "le email ne doit pas être vide")
 private String email;
-@Size(min = 5, max = 30)
-@NotNull
+@Size(min = 5, max = 30, message = "la taille du nom est [5-30]")
+@NotNull(message =  "le nom ne peut pas être vide")
 private String nom;
-@Size(min = 5, max = 30)
-@NotNull
+@Size(min = 5, max = 30, message = "la taille du prenom est [5-30]")
+@NotNull(message =  "le prenom ne peut pas être vide")
 private String prenom;
-@NotNull
+@NotNull(message = "tel obligatoire!")
 private String tel;
-@NotNull
+@NotNull(message = "veuillez saisir la grade!")
 private String grade;
 
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:replace="nav.html"></div>
+<br>
+<h1 class="text-center"> liste des voyages</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>destination</th>
+<th>superviseur</th>
+<th>date</th>
+<th>Prix</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="v: ${voyages}">
+<td th:text="${v.destination}"></td>
+
+<td th:text="${v.superviseur}"></td>
+<td th:text="${v.date}"></td>
+<td th:text="${v.prix}"></td>
+
+<td th:text="${v.description}"></td>
+
+
+
+</tr>
+
+
+</tbody>
+</table>
+</body>
+</html>
