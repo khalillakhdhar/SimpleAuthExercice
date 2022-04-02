@@ -49,7 +49,7 @@ http.authorizeRequests().antMatchers("/login/**").permitAll();
 //http.authorizeRequests().antMatchers("/client/**").permitAll();
 
 http.authorizeRequests().antMatchers("/api/**").hasRole("administrateur");
-
+//http.authorizeRequests().antMatchers("/api/**").permitAll();
 //autorisé pour tout le monde
 
 http.authorizeRequests().antMatchers(HttpMethod.GET, "/client").hasRole("administrateur");
