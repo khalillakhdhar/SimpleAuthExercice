@@ -15,8 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class Security extends WebSecurityConfigurerAdapter {
 @Autowired
-private DataSource dataSource; // parametre de récupération permanente des résultat de la BD
-// format de données object
+private DataSource dataSource; 
 @Autowired
 private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -52,7 +51,6 @@ http.authorizeRequests().antMatchers("/api/**").hasRole("administrateur");
 //http.authorizeRequests().antMatchers("/api/**").permitAll();
 //autorisé pour tout le monde
 
-http.authorizeRequests().antMatchers(HttpMethod.GET, "/client").hasRole("administrateur");
 //http.authorizeRequests().antMatchers(HttpMethod.POST, "/produit").hasRole("Admininstrateur");
 http.authorizeRequests().anyRequest().authenticated(); // le reste des requêtes est accessible uniquement si user=> authentificated
 }

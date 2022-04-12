@@ -17,7 +17,6 @@ import com.th.repositories.UserRepository;
 public class AccountServiceImplement implements AccountService {
 
 	@Bean
-	// avoir un BCryptEncoder qui est initialisé une et une seule fois
 	public BCryptPasswordEncoder getBCPE()
 	{
 		return new BCryptPasswordEncoder();
