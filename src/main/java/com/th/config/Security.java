@@ -40,7 +40,7 @@ public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception
 @Override
 protected void configure(HttpSecurity http) throws Exception
 {
-//http.formLogin();
+http.formLogin();
 http.csrf().disable().authorizeRequests().and()
 // .formLogin().and()
 .httpBasic();
